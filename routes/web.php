@@ -14,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // make an loop for month by month
+    $today = today();
+    $dates = [];
+
+    for ($i = 1; $i < 6 + 1; ++$i) {
+        $dates[] = \Carbon\Carbon::createFromDate($today->month, $i)->format('F');
+    }
+
+    $methods = \App\Method::all();
+    $events = \App\Event::all();
+
+    return view('test', compact('methods', 'events', 'dates'));
 });
