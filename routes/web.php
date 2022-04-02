@@ -22,8 +22,7 @@ Route::get('/', function () {
         $dates[] = \Carbon\Carbon::createFromDate($today->month, $i)->format('F');
     }
 
-    $methods = \App\Method::all();
-    $events = \App\Event::all();
+    $methods = \App\Method::with('events')->get();
 
-    return view('test', compact('methods', 'events', 'dates'));
+    return view('test', compact('methods', 'dates'));
 });

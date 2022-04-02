@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>SOAL TEST LARAVEL DEVELOPER BTP</title>
 </head>
 
 <body>
@@ -32,8 +32,9 @@
                             <td>
                                 @foreach ($method->events as $event)
                                     @if ($date === date('F', strtotime($event->start_date)))
-                                        <li>{{ $event->name }} - <span
-                                                class="text-danger">{{ date('F', strtotime($event->start_date)) }}</span>
+                                        <li>{{ $event->name }} <br>
+                                            <span class="text-primary">({{ $event->start_date }} -
+                                                {{ $event->end_date }})</span>
                                         </li>
                                     @endif
                                 @endforeach
