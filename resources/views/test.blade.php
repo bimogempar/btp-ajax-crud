@@ -13,11 +13,10 @@
 
 <body>
     <div class="m-5">
-
+        {{-- create method and event --}}
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Create New Event
         </button>
-
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -61,6 +60,7 @@
             </div>
         </div>
 
+        {{-- table --}}
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -99,7 +99,7 @@
             </tbody>
         </table>
 
-        {{-- modal using attribute --}}
+        {{-- edit method and event modal using attribute --}}
         @foreach ($methods as $method)
             @foreach ($method->events as $event)
                 <div class="modal fade" id="exampleModal{{ $event->id }}" tabindex="-1"
@@ -112,9 +112,30 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                {{ $event->name }} <br>
-                                <span class="text-primary">({{ $event->start_date }} -
-                                    {{ $event->end_date }})</span>
+                                <div class="mb-3">
+                                    <label for="method">Which Method Exist</label>
+                                    <select class="form-select" name="method" id="">
+                                        <option selected value="{{ $method->id }}">{{ $method->name }}</option>
+                                        @foreach ($methods as $method)
+                                            <option value={{ $method->id }}>{{ $method->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="event">Event</label>
+                                    <input type="text" class="form-control" id="event" placeholder="Create new event"
+                                        value="{{ old('Event', $event->name) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="start_date">Start Date</label>
+                                    <input type="date" class="form-control" id="start_date"
+                                        value="{{ $event->start_date }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="end_date">End Date</label>
+                                    <input type="date" class="form-control" id="end_date"
+                                        value="{{ $event->start_date }}">
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -127,6 +148,11 @@
         @endforeach
 
     </div>
+
+    {{-- jquery ajax --}}
+    <script>
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
