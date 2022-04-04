@@ -54,14 +54,10 @@ Route::get('/create', function () {
     return view('modal.create', compact('methods'));
 });
 
-Route::post('/update', function (Request $request) {
-    if ($request->has('id')) {
-        $event = \App\Event::find($request->id);
-        $event->update($request->all());
-    } else {
-        $event = \App\Event::create($request->all());
-    }
-    // return $request->all();
+Route::patch('/update/{id}', function (Request $request) {
+    $event = \App\Event::find($request->id)->load('method');
+    $event->update($request->all());
+    return $event;
 });
 
 Route::post('/store', function (Request $request) {
