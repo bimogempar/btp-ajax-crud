@@ -71,6 +71,7 @@
                         {{-- dynamic modal --}}
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="btnSubmmit"></button>
                     </div>
@@ -89,6 +90,7 @@
                 $('#showBodyModal').html(data);
                 $('#showModal').modal('show');
                 $('#btnSubmmit').text('Save Event').attr('onclick', 'store()');
+                $('#deleteButton').hide();
             });
         }
 
@@ -99,6 +101,7 @@
                 $('#showBodyModal').html(data);
                 $('#showModal').modal('show');
                 $('#btnSubmmit').text('Update Event').attr('onclick', 'update()');
+                $('#deleteButton').show().attr('onclick', 'deleteButton()');
             });
         }
     </script>

@@ -54,12 +54,6 @@ Route::get('/create', function () {
     return view('modal.create', compact('methods'));
 });
 
-Route::patch('/update/{id}', function (Request $request) {
-    $event = \App\Event::find($request->id)->load('method');
-    $event->update($request->all());
-    return $event;
-});
-
 Route::post('/store', function (Request $request) {
     if ($request->method_id === null) {
         $method = \App\Method::create([
@@ -84,4 +78,16 @@ Route::post('/store', function (Request $request) {
 
         return $resp;
     }
+});
+
+Route::patch('/update/{id}', function (Request $request) {
+    $event = \App\Event::find($request->id)->load('method');
+    $event->update($request->all());
+    return $event;
+});
+
+Route::delete('/delete/{id}', function (Request $request) {
+    $event = \App\Event::find($request->id)->load('method');
+    $event->delete();
+    return $event;
 });

@@ -22,6 +22,27 @@
 </div>
 
 <script>
+    function deleteButton() {
+        if (confirm('Are you sure to delete this event?')) {
+            deleteEvent()
+        }
+    }
+
+    function deleteEvent() {
+        $.ajax({
+            url: '/delete/{{ $event->id }}',
+            type: 'DELETE',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(result) {
+                // console.log(result);
+                $('.btn-close').click();
+                reloadTable()
+            }
+        });
+    }
+
     function update() {
         var method_id = $('#methodExist').val();
         var event = $('#event').val()
