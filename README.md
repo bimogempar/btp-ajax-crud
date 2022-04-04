@@ -1,5 +1,8 @@
-[1] CRUD with jquery and AJAX
-[2] Render view with loop month as column in a table
-[3] Eloquent Relationship Laravel
-[4] DOM
-[5] SPA
+<ul>
+    <li>[1] CRUD with jquery and AJAX</li>
+    <li>[2] Render view with loop month as column in a table</li>
+    <li>[3] Eloquent Relationship Laravel</li>
+    <li>[4] DOM</li>
+    <li>[5] SPA
+</li>
+</ul>
