@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\SendMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -90,4 +91,16 @@ Route::delete('/delete/{id}', function (Request $request) {
     $event = \App\Event::find($request->id)->load('method');
     $event->delete();
     return $event;
+});
+
+Route::get('phpinfo', function () {
+    return phpinfo();
+});
+
+Route::get('welcome', function () {
+    return view('welcome');
+});
+
+Route::get('trigger', function () {
+    return event(new SendMessage('Hello World!'));
 });
