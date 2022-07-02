@@ -30,12 +30,19 @@
     <script src="//{{ Request::getHost() }}:{{ env('LARAVEL_ECHO_PORT') }}/socket.io/socket.io.js"></script>
     <script src="{{ url('/js/laravel-echo-setup.js') }}" type="text/javascript"></script>
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         var i = 0;
         window.Echo.channel('message-channel')
             .listen('.MessageEvent', (listen) => {
                 i++;
                 $("#notification").append('<div class="alert alert-success">' + i + '.' + listen.message + '</div>');
+            });
+    </script> --}}
+
+    <script type="text/javascript">
+        window.Echo.private('notif-user.' + {{ Auth::user()->id }})
+            .listen('NotifUser', (listen) => {
+                console.log(listen.data)
             });
     </script>
 @endsection

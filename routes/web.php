@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NotifUser;
 use App\Events\SendMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -105,7 +106,13 @@ Route::get('/phpinfo', function () {
 });
 
 Route::get('/trigger', function () {
-    return event(new SendMessage('Hello World!'));
+    // event(new SendMessage('Hello World!'));
+    $data = [
+        'user_id' => 1,
+        'message' => 'Hello World!',
+    ];
+    event(new NotifUser($data));
+    return 'event triggered';
 });
 
 // route using auth
